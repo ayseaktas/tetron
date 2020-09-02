@@ -1,0 +1,47 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Test.gd" type="Script" id=1]
+
+[node name="Test" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Shape" type="Label" parent="."]
+margin_left = 171.827
+margin_top = 77.7817
+margin_right = 211.827
+margin_bottom = 91.7817
+
+[node name="Grid" type="Label" parent="."]
+margin_left = 173.948
+margin_top = 30.4056
+margin_right = 213.948
+margin_bottom = 44.4056
+
+[node name="PickShape" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 16.0
+margin_right = 107.0
+margin_bottom = 36.0
+text = "Pick a shape"
+
+[node name="RotateLeft" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 48.0
+margin_right = 94.0
+margin_bottom = 68.0
+text = "Rotate left"
+
+[node name="RotateRight" type="Button" parent="."]
+margin_left = 16.0
+margin_top = 80.0
+margin_right = 102.0
+margin_bottom = 100.0
+text = "Rotate right"
+[connection signal="button_down" from="PickShape" to="." method="_on_PickShape_button_down"]
+[connection signal="button_down" from="RotateLeft" to="." method="_on_RotateLeft_button_down"]
+[connection signal="button_down" from="RotateRight" to="." method="_on_RotateRight_button_down"]
