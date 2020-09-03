@@ -28,7 +28,6 @@ func _ready():
 		
 		if size % 2 == 0:
 			data.coors.remove(s2)
-		print(data.coors)
 		data.grid = _get_grid(size, shape.get_children())
 		_shapes.append(data)
 
