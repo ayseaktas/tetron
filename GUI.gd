@@ -1,7 +1,5 @@
 extends CenterContainer
 
-signal button_pressed(button_name)
-
 var grid
 var next
 
@@ -9,9 +7,43 @@ var music = 0
 var sound = 0
 var min_vol = 0.0
 
-const CELL_BG1 = Color(.1, .1, .1)
-const CELL_BG2 = Color(0)
+var level = 1 setget set_level
+var score = 0 setget set_score
+var high_score = 0 setget set_high_score 
+var lines = 0 setget set_lines
 
+signal button_pressed(button_name)
+
+func set_level(value):
+	find_node("Level").text= str(value)
+	level= value
+
+
+func set_score(value):
+	find_node("Score").text = str(value)
+	score= value
+
+
+func set_high_score(value):
+	find_node("HighScore").text = "%08d" % value
+	high_score = value
+	
+
+func set_lines(value):
+	find_node("Lines").text = str(value)
+	lines=value
+
+func reset_stats(_high_score = 0, _score=0, _lines = 0, _level = 1):
+	self.high_score = _high_score
+	self.score = _score
+	self.lines = _lines
+	self.level = _level
+	
+
+func settings(data):
+	self.high_score = data.high_score
+	find_node("Music").value = data.music
+	find_node("Sound").value = data.sound
 
 func _ready():
 	grid = find_node("Grid")
