@@ -97,7 +97,7 @@ margin_top = 153.0
 margin_right = 138.0
 margin_bottom = 260.0
 
-[node name="NextShape" type="GridContainer" parent="Panel/HBoxContainer/Left/VBox/CenterContainer"]
+[node name="Next" type="GridContainer" parent="Panel/HBoxContainer/Left/VBox/CenterContainer"]
 margin_left = 42.0
 margin_right = 95.0
 margin_bottom = 107.0
@@ -105,50 +105,50 @@ custom_constants/vseparation = 1
 custom_constants/hseparation = 1
 columns = 2
 
-[node name="Cell" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_right = 26.0
 margin_bottom = 26.0
 texture = ExtResource( 1 )
 
-[node name="Cell2" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell2" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_left = 27.0
 margin_right = 53.0
 margin_bottom = 26.0
 texture = ExtResource( 1 )
 
-[node name="Cell3" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell3" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_top = 27.0
 margin_right = 26.0
 margin_bottom = 53.0
 texture = ExtResource( 1 )
 
-[node name="Cell4" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell4" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_left = 27.0
 margin_top = 27.0
 margin_right = 53.0
 margin_bottom = 53.0
 texture = ExtResource( 1 )
 
-[node name="Cell5" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell5" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_top = 54.0
 margin_right = 26.0
 margin_bottom = 80.0
 texture = ExtResource( 1 )
 
-[node name="Cell6" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell6" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_left = 27.0
 margin_top = 54.0
 margin_right = 53.0
 margin_bottom = 80.0
 texture = ExtResource( 1 )
 
-[node name="Cell7" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell7" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_top = 81.0
 margin_right = 26.0
 margin_bottom = 107.0
 texture = ExtResource( 1 )
 
-[node name="Cell8" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/NextShape"]
+[node name="Cell8" type="TextureRect" parent="Panel/HBoxContainer/Left/VBox/CenterContainer/Next"]
 margin_left = 27.0
 margin_top = 81.0
 margin_right = 53.0
@@ -276,7 +276,7 @@ Page Up - increase level on each press
 New Game button
 Pause button
 Music On/Off button
-About button - pop's up a window to show the above info. about the game controls"
+"
 __meta__ = {
 "_edit_use_anchors_": false
 }

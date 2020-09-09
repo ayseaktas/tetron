@@ -1,5 +1,7 @@
 extends CenterContainer
 
+signal button_pressed(button_name)
+
 var grid
 var next
 
@@ -10,16 +12,15 @@ var min_vol = 0.0
 const CELL_BG1 = Color(.1, .1, .1)
 const CELL_BG2 = Color(0)
 
-signal button_pressed(button_name)
 
 func _ready():
 	grid = find_node("Grid")
-	next = find_node("NextShape")
+	next = find_node("Next")
 	min_vol = find_node("Music").get_min()
 	find_node("Sound").set_min(min_vol)
 	add_cells(grid, 200)
-	clear_cells(grid)
-	clear_cells(next)
+	clear_all_cells()
+	
 
 func add_cells(node, n):
 	var num_cells = node.get_child_count()
@@ -27,10 +28,14 @@ func add_cells(node, n):
 		node.add_child(node.get_child(0).duplicate())
 		num_cells += 1
 
+func clear_all_cells():
+	clear_cells(grid)
+	clear_cells(next)
+
 func clear_cells(node):
 	for cell in node.get_children():
-		cell.modulate = Color(0)
-	
+		cell.modulate = Color(1)
+
 
 
 func _on_About_button_down():
@@ -61,14 +66,14 @@ func _on_AboutBox_popup_hide():
 func set_button_states(playing):
 	set_button_state("NewGame", playing)
 	set_button_state("About", playing)
-	set_button_state("Pause", playing)
+	set_button_state("Pause", !playing)
 
 
 func _on_Sound_value_changed(value):
 	music = value
-	emit_signal("button_pressed", "Music")
+	emit_signal("button_pressed", "Sound")
 
 
 func _on_Music_value_changed(value):
 	sound = value
-	emit_signal("button_pressed", "Sound")
+	emit_signal("button_pressed", "Music")

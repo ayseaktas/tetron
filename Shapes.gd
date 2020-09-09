@@ -19,15 +19,18 @@ func get_shape() -> ShapeData:
 func _ready():
 	for shape in get_children():
 		var data = ShapeData.new()
-		data.name = shape.name 
+		data.name = shape.name
 		data.color = shape.modulate
 		
 		var size = shape.columns
 		var s2 = size / 2
-		data.coors = range(-s2, s2+1)
+#		print("s2", s2)
+		data.coors = range(-s2, s2 + 1)
 		
+		# Remove the zero coordinate for even-sized grids
 		if size % 2 == 0:
 			data.coors.remove(s2)
+#		print(data.coors) 
 		data.grid = _get_grid(size, shape.get_children())
 		_shapes.append(data)
 
