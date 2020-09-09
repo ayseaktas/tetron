@@ -24,13 +24,11 @@ func _ready():
 		
 		var size = shape.columns
 		var s2 = size / 2
-#		print("s2", s2)
 		data.coors = range(-s2, s2 + 1)
 		
 		# Remove the zero coordinate for even-sized grids
 		if size % 2 == 0:
 			data.coors.remove(s2)
-#		print(data.coors) 
 		data.grid = _get_grid(size, shape.get_children())
 		_shapes.append(data)
 
