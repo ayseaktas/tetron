@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
-[ext_resource path="res://endcreditmusic.ogg" type="AudioStream" id=3]
+[ext_resource path="res://main_song.ogg" type="AudioStream" id=3]
+[ext_resource path="res://game_over_sound.ogg" type="AudioStream" id=4]
 
 [node name="Main" type="CenterContainer"]
 anchor_right = 1.0
@@ -12,7 +13,7 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
 pause_mode = 2
 stream = ExtResource( 3 )
 
@@ -29,6 +30,9 @@ margin_bottom = 745.0
 [node name="LeftTimer" type="Timer" parent="."]
 
 [node name="RightTimer" type="Timer" parent="."]
+
+[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
 [connection signal="timeout" from="Ticker" to="." method="_on_Ticker_timeout"]
 [connection signal="timeout" from="LeftTimer" to="." method="_on_LeftTimer_timeout"]
 [connection signal="timeout" from="RightTimer" to="." method="_on_RightTimer_timeout"]

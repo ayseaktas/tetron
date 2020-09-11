@@ -112,10 +112,10 @@ func set_button_states(playing):
 
 
 func _on_Sound_value_changed(value):
-	music = value
+	sound = value
 	emit_signal("button_pressed", "Sound")
 
 
 func _on_Music_value_changed(value):
-	sound = value
+	music = value
 	emit_signal("button_pressed", "Music")

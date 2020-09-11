@@ -18,7 +18,6 @@ func rotate_right():
 func _rotate_grid(sign_of_x, sign_of_y):
 	var rotated_grid = grid.duplicate(true)
 	
-	print(coors)
 	for x in coors:
 		for y in coors:
 			# Map x and y to array indices
