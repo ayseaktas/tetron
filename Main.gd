@@ -9,6 +9,8 @@ const START_POS = 5
 const END_POS = 25
 const TICK_SPEED = 1.0
 const FAST_MULTIPLE = 10
+const WAIT_TIME = 0.15
+const REPEAT_DELAY = 0.05
 const MAX_LEVEL = 100
 
 var gui
@@ -104,23 +106,25 @@ func _button_pressed(button_name):
 			if state == PLAYING:
 				gui.set_button_text("Pause", "Resume")
 				state = PAUSED
+				pause()
 				if _music_is_on():
 					_music(PAUSE)
 			else:
 				gui.set_button_text("Pause", "Pause")
 				state = PLAYING
+				pause(false)
 				if _music_is_on():
 					_music(PLAY)
 		"Music":
 			if state == PLAYING:
 				if _music_is_on():
-					print("Music on level: %d", gui.music)
+					print("Music on level: %d" % gui.music)
 					_music(PLAY)
 				else:
 					_music(STOP)
 		"Sound":
 			if _sound_is_on():
-				print("Sound on level: %d", gui.sound)
+				print("Sound on level: %d" % gui.sound)
 			else:
 				print("Sound off")
 		"About":
@@ -149,6 +153,39 @@ func new_shape():
 	add_shape_to_grid()
 	normal_drop()
 	level_up()
+
+
+func _input(event):
+	if state == PLAYING:
+		if event.is_action_pressed("ui_page_up"):
+			increase_level()
+		if event.is_action_pressed("ui_down"):
+			bonus = 2
+			soft_drop()
+		if event.is_action_released("ui_down"):
+			bonus = 0
+			normal_drop()
+		if event.is_action_pressed("ui_accept"):
+			hard_drop()
+		if event.is_action_pressed("ui_left"):
+			move_left()
+			$LeftTimer.start(WAIT_TIME)
+		if event.is_action_released("ui_left"):
+			$LeftTimer.stop()
+		if event.is_action_pressed("ui_right"):
+			move_right()
+			$RightTimer.start(WAIT_TIME)
+		if event.is_action_released("ui_right"):
+			$RightTimer.stop()
+		if event.is_action_pressed("ui_up"):
+			if event.shift:
+				move_shape(pos, ROTATE_RIGHT)
+			else:
+				move_shape(pos, ROTATE_LEFT)
+		if event.is_action_pressed("ui_cancel"):
+			_game_over()
+		if event is InputEventKey:
+			get_tree().set_input_as_handled()
 
 
 func level_up():
@@ -212,7 +249,7 @@ func move_right():
 func _music(action):
 	if action == PLAY:
 		$MusicPlayer.volume_db = gui.music
-		if $MusicPlayer.is_playing():
+		if !$MusicPlayer.is_playing():
 			$MusicPlayer.play(music_position)
 		print("Music changed")
 		
@@ -275,7 +312,7 @@ func remove_rows(i, rows):
 	var to = i + num_cells
 	while i >= 0:
 		grid[to] = grid[i]
-		gui.grid.get_child(to).madulate = gui.grid.get_child(i).modulate
+		gui.grid.get_child(to).modulate = gui.grid.get_child(i).modulate
 		if i == 0:
 			grid[i] = false
 			gui.grid.get_child(i).modulate = Color(0)
@@ -285,3 +322,13 @@ func remove_rows(i, rows):
 
 func pause(value=true):
 	get_tree().paused = value
+
+
+func _on_RightTimer_timeout():
+	$RightTimer.wait_time = REPEAT_DELAY
+	move_right()
+
+
+func _on_LeftTimer_timeout():
+	$LeftTimer.wait_time = REPEAT_DELAY
+	move_left()
