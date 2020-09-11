@@ -26,6 +26,7 @@ margin_right = 213.948
 margin_bottom = 44.4056
 
 [node name="PickShape" type="Button" parent="."]
+visible = false
 margin_left = 11.5101
 margin_top = 4.21415
 margin_right = 102.51
@@ -33,6 +34,7 @@ margin_bottom = 24.2141
 text = "Pick a shape"
 
 [node name="RotateLeft" type="Button" parent="."]
+visible = false
 margin_left = 13.1938
 margin_top = 32.8468
 margin_right = 91.1938
@@ -43,6 +45,7 @@ __meta__ = {
 }
 
 [node name="RotateRight" type="Button" parent="."]
+visible = false
 margin_left = 9.82646
 margin_top = 59.7957
 margin_right = 95.8265
@@ -50,6 +53,7 @@ margin_bottom = 79.7957
 text = "Rotate right"
 
 [node name="AddShapeToGrid" type="Button" parent="."]
+visible = false
 margin_left = 7.67114
 margin_top = 85.392
 margin_right = 136.671
@@ -60,6 +64,7 @@ __meta__ = {
 }
 
 [node name="RemoveShapeFromGrid" type="Button" parent="."]
+visible = false
 margin_left = 148.38
 margin_top = 84.8156
 margin_right = 341.38
@@ -67,6 +72,7 @@ margin_bottom = 104.816
 text = "Remove shape from the grid"
 
 [node name="Lock" type="Button" parent="."]
+visible = false
 margin_left = 352.788
 margin_top = 86.5974
 margin_right = 393.788
@@ -74,6 +80,7 @@ margin_bottom = 106.597
 text = "Lock"
 
 [node name="SpinBox" type="SpinBox" parent="."]
+visible = false
 margin_left = 404.844
 margin_top = 84.9491
 margin_right = 478.844

@@ -225,7 +225,7 @@ texture = ExtResource( 1 )
 modulate = Color( 1, 0, 0, 1 )
 margin_top = 106.0
 margin_right = 86.0
-margin_bottom = 192.0
+margin_bottom = 222.0
 columns = 3
 
 [node name="Cell4" type="TextureRect" parent="Z"]
@@ -295,7 +295,7 @@ modulate = Color( 0.780392, 0, 1, 1 )
 margin_left = 106.0
 margin_top = 106.0
 margin_right = 192.0
-margin_bottom = 192.0
+margin_bottom = 222.0
 columns = 3
 
 [node name="BlankCell" type="TextureRect" parent="T"]
@@ -365,7 +365,7 @@ modulate = Color( 0, 0.976471, 1, 1 )
 margin_left = 212.0
 margin_top = 106.0
 margin_right = 328.0
-margin_bottom = 192.0
+margin_bottom = 222.0
 columns = 4
 
 [node name="BlankCell" type="TextureRect" parent="I"]
@@ -453,11 +453,42 @@ margin_right = 116.0
 margin_bottom = 86.0
 texture = ExtResource( 1 )
 
+[node name="BlankCell9" type="TextureRect" parent="I"]
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 90.0
+margin_right = 26.0
+margin_bottom = 116.0
+texture = ExtResource( 1 )
+
+[node name="BlankCell10" type="TextureRect" parent="I"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 30.0
+margin_top = 90.0
+margin_right = 56.0
+margin_bottom = 116.0
+texture = ExtResource( 1 )
+
+[node name="BlankCell11" type="TextureRect" parent="I"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 60.0
+margin_top = 90.0
+margin_right = 86.0
+margin_bottom = 116.0
+texture = ExtResource( 1 )
+
+[node name="BlankCell12" type="TextureRect" parent="I"]
+modulate = Color( 1, 1, 1, 0 )
+margin_left = 90.0
+margin_top = 90.0
+margin_right = 116.0
+margin_bottom = 116.0
+texture = ExtResource( 1 )
+
 [node name="c" type="GridContainer" parent="."]
 modulate = Color( 0.968627, 1, 0, 1 )
-margin_top = 212.0
+margin_top = 242.0
 margin_right = 86.0
-margin_bottom = 268.0
+margin_bottom = 298.0
 columns = 2
 
 [node name="Cell" type="TextureRect" parent="c"]

@@ -38,12 +38,13 @@ func reset_stats(_high_score = 0, _score=0, _lines = 0, _level = 1):
 	self.score = _score
 	self.lines = _lines
 	self.level = _level
-	
+
 
 func settings(data):
 	self.high_score = data.high_score
 	find_node("Music").value = data.music
 	find_node("Sound").value = data.sound
+
 
 func _ready():
 	grid = find_node("Grid")
@@ -52,7 +53,7 @@ func _ready():
 	find_node("Sound").set_min(min_vol)
 	add_cells(grid, 200)
 	clear_all_cells()
-	
+
 
 func set_next_shape(shape:ShapeData):
 	clear_cells(next)

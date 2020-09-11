@@ -13,6 +13,7 @@ __meta__ = {
 }
 
 [node name="MusicPlayer" type="AudioStreamPlayer2D" parent="."]
+pause_mode = 2
 stream = ExtResource( 3 )
 
 [node name="GUI" parent="." instance=ExtResource( 2 )]
@@ -22,3 +23,6 @@ margin_left = 129.0
 margin_top = 279.0
 margin_right = 470.0
 margin_bottom = 745.0
+
+[node name="Ticker" type="Timer" parent="."]
+[connection signal="timeout" from="Ticker" to="." method="_on_Ticker_timeout"]

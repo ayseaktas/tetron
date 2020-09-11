@@ -1,7 +1,6 @@
 extends Control
 
 var shape: ShapeData
-var m
 
 
 func _on_PickShape_button_down():
@@ -25,10 +24,12 @@ func _show_grid():
 	for row in shape.grid:
 		for col in row:
 			if col:
-				$Grid.text += "x" 
+				$Grid.text += "x "
 			else:
-				$Grid.text += "- "
+				$Grid.text += "_ "
 		$Grid.text += "\n"
+
+var m
 
 func _on_AddShapeToGrid_button_down():
 	m = $Main

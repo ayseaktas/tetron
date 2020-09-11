@@ -5,6 +5,11 @@ enum{ROTATE_LEFT, ROTATE_RIGHT}
 
 const DISABLED = true
 const ENABLED = false
+const START_POS = 5
+const END_POS = 25
+const TICK_SPEED = 1.0
+const FAST_MULTIPLE = 10
+const MAX_LEVEL = 100
 
 var gui
 var state = STOPPED
@@ -12,7 +17,10 @@ var music_position = 0.0
 var grid = []
 var cols
 var shape: ShapeData
+var next_shape: ShapeData
 var pos = 0
+var count = 0
+var bonus = 0
 
 func _ready():
 	gui = $GUI
@@ -20,8 +28,7 @@ func _ready():
 	gui.set_button_states(ENABLED)
 	cols = gui.grid.get_columns()
 	gui.reset_stats()
-	for i in range(8):
-		add_to_score(i)
+	randomize()
 
 func clear_grid():
 	grid.clear()
@@ -85,10 +92,8 @@ func place_shape(index, add_tiles = false, lock = false, color = Color(0)):
 					if add_tiles and grid_pos >= 0:
 						gui.grid.get_child(grid_pos).modulate = color
 		y += 1
-	print("-------")
 	return ok
 
-	
 
 func _button_pressed(button_name):
 	match button_name:
@@ -128,8 +133,52 @@ func _start_game():
 	music_position = 0.0
 	if _music_is_on():
 		_music(PLAY)
+	clear_grid()
+	gui.reset_stats(gui.high_score)
+	new_shape()
+
+
+func new_shape():
+	if next_shape:
+		shape = next_shape
+	else:
+		shape=Shapes.get_shape()
+	next_shape = Shapes.get_shape()
+	gui.set_next_shape(next_shape)
+	pos = START_POS
+	add_shape_to_grid()
+	normal_drop()
+	level_up()
+
+
+func level_up():
+	count += 1
+	if count % 10 == 0:
+		increase_level()
+
+
+func increase_level():
+	if gui.level < MAX_LEVEL:
+		gui.level += 1
+		$Ticker.set_wait_time(TICK_SPEED / gui.level)
+
+
+func normal_drop():
+	$Ticker.start(TICK_SPEED / gui.level)
+
+
+func soft_drop():
+	$Ticker.stop()
+	$Ticker.start(TICK_SPEED / gui.level / FAST_MULTIPLE)
+
+
+func hard_drop():
+	$Ticker.stop()
+	$Ticker.start(TICK_SPEED / MAX_LEVEL)
+
 
 func _game_over():
+	$Ticker.stop()
 	gui.set_button_states(ENABLED)
 	if _music_is_on():
 		_music(STOP)
@@ -150,6 +199,16 @@ func update_high_score():
 		gui.high_score = gui.score
 
 
+func move_left():
+	if pos % cols > 0:
+		move_shape(pos - 1)
+
+
+func move_right():
+	if pos % cols < cols - 1:
+		move_shape(pos + 1)
+
+
 func _music(action):
 	if action == PLAY:
 		$MusicPlayer.volume_db = gui.music
@@ -168,5 +227,61 @@ func _music_is_on():
 
 func _sound_is_on():
 	return gui.sound > gui.min_vol
-	
 
+
+func _on_Ticker_timeout():
+	var new_pos = pos + cols
+	if move_shape(new_pos):
+		gui.score += bonus
+		update_high_score()
+	else:
+		if new_pos <= END_POS:
+			_game_over()
+		else:
+			lock_shape_to_grid()
+			check_rows()
+			new_shape()
+
+
+func check_rows():
+	var i = grid.size() - 1
+	var x = 0
+	var rows = 0
+	while i >= 0:
+		if grid[i]:
+			x += 1
+			i -= 1
+			if x == cols:
+				rows += 1
+				x = 0
+		else:
+			i += x
+			x = 0
+			if rows > 0:
+				remove_rows(i, rows)
+			rows = 0
+			i -= cols
+			
+
+func remove_rows(i, rows):
+	add_to_score(rows)
+	print("Rows: %d" % rows)
+	var num_cells = rows*cols
+	for n in num_cells:
+		gui.grid.get_child(i+n+1).modulate = Color(0)
+	pause()
+	yield(get_tree().create_timer(0.3), "timeout")
+	pause(false)
+	var to = i + num_cells
+	while i >= 0:
+		grid[to] = grid[i]
+		gui.grid.get_child(to).madulate = gui.grid.get_child(i).modulate
+		if i == 0:
+			grid[i] = false
+			gui.grid.get_child(i).modulate = Color(0)
+		i -= 1
+		to -= 1
+
+
+func pause(value=true):
+	get_tree().paused = value
