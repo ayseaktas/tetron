@@ -11,7 +11,7 @@ const TICK_SPEED = 1.0
 const FAST_MULTIPLE = 10
 const WAIT_TIME = 0.15
 const REPEAT_DELAY = 0.05
-const MAX_LEVEL = 10
+const MAX_LEVEL = 20
 const FILE_NAME = "user://tetron.json"
 
 var gui
@@ -126,7 +126,8 @@ func _button_pressed(button_name):
 					_music(STOP)
 		"Sound":
 			if _sound_is_on():
-				$SoundPlayer.volume_db = gui.sound
+				$game_over_sound.volume_db = gui.sound
+				$row_explosion_sound .volume_db= gui.sound
 				print("Sound on level: %d" % gui.sound)
 			else:
 				print("Sound off")
@@ -140,6 +141,8 @@ func _start_game():
 	music_position = 0.0
 	if _music_is_on():
 		_music(PLAY)
+	if _sound_is_on():
+		$game_over_sound.stop()
 	clear_grid()
 	gui.reset_stats(gui.high_score)
 	new_shape()
@@ -214,7 +217,7 @@ func soft_drop():
 
 func hard_drop():
 	$Ticker.stop()
-	$Ticker.start(TICK_SPEED / MAX_LEVEL)
+	$Ticker.start(TICK_SPEED / 25)
 
 
 func _game_over():
@@ -225,7 +228,7 @@ func _game_over():
 	if _music_is_on():
 		_music(STOP)
 	if _sound_is_on():
-		$SoundPlayer.play()
+		$game_over_sound.play()
 	state = STOPPED
 	print("Game stopped")
 	save_game()
@@ -313,8 +316,8 @@ func remove_rows(rows):
 		var rows_moved = 0
 		add_to_score(rows.size())
 		pause()
-#		if _sound_is_on():
-#			$SoundPlayer.play()
+		if _sound_is_on():
+			$row_explosion_sound.play()
 		yield(get_tree().create_timer(0.3), "timeout")
 		pause(false)
 		remove_shape_from_grid()

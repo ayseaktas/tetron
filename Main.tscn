@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://Main.gd" type="Script" id=1]
 [ext_resource path="res://GUI.tscn" type="PackedScene" id=2]
 [ext_resource path="res://main_song.ogg" type="AudioStream" id=3]
-[ext_resource path="res://game_over_sound.ogg" type="AudioStream" id=4]
+[ext_resource path="res://game_over_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://row_explosion.wav" type="AudioStream" id=5]
 
 [node name="Main" type="CenterContainer"]
 anchor_right = 1.0
@@ -31,8 +32,11 @@ margin_bottom = 745.0
 
 [node name="RightTimer" type="Timer" parent="."]
 
-[node name="SoundPlayer" type="AudioStreamPlayer" parent="."]
+[node name="game_over_sound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource( 4 )
+
+[node name="row_explosion_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
 [connection signal="timeout" from="Ticker" to="." method="_on_Ticker_timeout"]
 [connection signal="timeout" from="LeftTimer" to="." method="_on_LeftTimer_timeout"]
 [connection signal="timeout" from="RightTimer" to="." method="_on_RightTimer_timeout"]

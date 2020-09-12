@@ -206,6 +206,8 @@ margin_left = 43.0
 margin_right = 138.0
 margin_bottom = 16.0
 size_flags_horizontal = 3
+min_value = -24.0
+max_value = 0.0
 
 [node name="About" type="Button" parent="Panel/HBoxContainer/Left/VBox"]
 margin_top = 432.0
