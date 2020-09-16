@@ -12,7 +12,7 @@ _global_script_classes=[ {
 "base": "Control",
 "class": "ShapeData",
 "language": "GDScript",
-"path": "res://ShapeData.gd"
+"path": "res://script/ShapeData.gd"
 } ]
 _global_script_class_icons={
 "ShapeData": ""
@@ -21,11 +21,11 @@ _global_script_class_icons={
 [application]
 
 config/name="Tetron"
-config/icon="res://icon.png"
+config/icon="res://images/icon.png"
 
 [autoload]
 
-Shapes="*res://Shapes.tscn"
+Shapes="*res://scenes/Shapes.tscn"
 
 [display]
 
