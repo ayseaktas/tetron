@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://script/Main.gd" type="Script" id=1]
+[ext_resource path="res://scenes/GUI.tscn" type="PackedScene" id=2]
+[ext_resource path="res://sounds/main_song.ogg" type="AudioStream" id=3]
+[ext_resource path="res://sounds/game_over_sound.wav" type="AudioStream" id=4]
+[ext_resource path="res://sounds/row_explosion.wav" type="AudioStream" id=5]
+[ext_resource path="res://scenes/background.tscn" type="PackedScene" id=6]
+
+[node name="Main" type="CenterContainer"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="background" parent="." instance=ExtResource( 6 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 300.0
+margin_top = 512.0
+margin_right = 300.0
+margin_bottom = 512.0
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+pause_mode = 2
+stream = ExtResource( 3 )
+
+[node name="GUI" parent="." instance=ExtResource( 2 )]
+anchor_right = 0.0
+anchor_bottom = 0.0
+margin_left = 136.0
+margin_top = 237.0
+margin_right = 463.0
+margin_bottom = 787.0
+
+[node name="Ticker" type="Timer" parent="."]
+
+[node name="LeftTimer" type="Timer" parent="."]
+
+[node name="RightTimer" type="Timer" parent="."]
+
+[node name="game_over_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+
+[node name="row_explosion_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 5 )
+[connection signal="timeout" from="Ticker" to="." method="_on_Ticker_timeout"]
+[connection signal="timeout" from="LeftTimer" to="." method="_on_LeftTimer_timeout"]
+[connection signal="timeout" from="RightTimer" to="." method="_on_RightTimer_timeout"]
