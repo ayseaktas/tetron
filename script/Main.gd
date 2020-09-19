@@ -39,12 +39,14 @@ func _ready():
 	load_game()
 	randomize()
 
+
 func clear_grid():
 	grid.clear()
 	grid.resize(gui.grid.get_child_count())
 	for i in grid.size():
 		grid[i] = false
 	gui.clear_all_cells()
+
 
 func move_shape(new_pos, dir = null):
 	remove_shape_from_grid()
@@ -57,6 +59,7 @@ func move_shape(new_pos, dir = null):
 	add_shape_to_grid()
 	return ok
 
+
 func rotate(dir):
 	match dir:
 		ROTATE_LEFT:
@@ -67,16 +70,18 @@ func rotate(dir):
 			dir = ROTATE_LEFT
 	return dir
 
+
 func add_shape_to_grid():
 	place_shape(pos, true, false, shape.color)
-	
+
+
 func remove_shape_from_grid():
 	place_shape(pos, true)
 
 
 func lock_shape_to_grid():
 	place_shape(pos, false, true)
-	
+
 
 func place_shape(index, add_tiles = false, lock = false, color = Color(0)):
 	var ok = true
@@ -93,6 +98,7 @@ func place_shape(index, add_tiles = false, lock = false, color = Color(0)):
 					grid[grid_pos] = true
 				else:
 					var gx = index % cols + x + offset
+					
 					
 					if gx < 0 or gx >= cols or grid_pos >= grid.size() or grid_pos >= 0 and grid[grid_pos]:
 						ok = !ok
@@ -113,7 +119,6 @@ func _button_released(button_name):
 		"soft_drop":
 			bonus = 0
 			normal_drop()
-		
 
 
 func _button_pressed(button_name):
@@ -297,8 +302,10 @@ func _music(action):
 		music_position = $MusicPlayer.get_playback_position()
 		$MusicPlayer.stop()
 
+
 func _music_is_on():
 	return gui.music > gui.min_vol
+
 
 func _sound_is_on():
 	return gui.sound > gui.min_vol
@@ -368,6 +375,7 @@ func remove_rows(rows):
 			rows_moved += 1
 		add_shape_to_grid()
 
+
 func pause(value=true):
 	get_tree().paused = value
 
@@ -381,6 +389,7 @@ func _on_LeftTimer_timeout():
 	$LeftTimer.wait_time = REPEAT_DELAY
 	move_left()
 
+
 func save_game():
 	var data = {
 		"music": gui.music,
@@ -392,6 +401,7 @@ func save_game():
 	file.store_string(to_json(data))
 	file.close()
 	
+	
 func load_game():
 	var file = File.new()
 	if file.file_exists(FILE_NAME):
@@ -400,16 +410,6 @@ func load_game():
 		gui.settings(data)
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-
-
 func _on_right_button_down():
 	move_right()
 	$RightTimer.start(WAIT_TIME)
@@ -422,6 +422,7 @@ func _on_left_button_down():
 
 func _on_change_button_down():
 	move_shape(pos, ROTATE_RIGHT)
+
 
 func _on_soft_drop_button_down():
 	soft_drop()

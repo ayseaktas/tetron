@@ -30,9 +30,9 @@ stream = ExtResource( 3 )
 [node name="GUI" parent="." instance=ExtResource( 2 )]
 anchor_right = 0.0
 anchor_bottom = 0.0
-margin_left = 136.0
+margin_left = 138.0
 margin_top = 237.0
-margin_right = 463.0
+margin_right = 461.0
 margin_bottom = 787.0
 
 [node name="Ticker" type="Timer" parent="."]

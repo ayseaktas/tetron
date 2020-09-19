@@ -22,10 +22,10 @@
 [sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 3 )
 region_rect = Rect2( 0, 0, 327, 508 )
-expand_margin_left = 20.0
-expand_margin_right = 20.0
-expand_margin_top = 20.0
-expand_margin_bottom = 20.0
+expand_margin_left = 2.0
+expand_margin_right = 2.0
+expand_margin_top = 2.0
+expand_margin_bottom = 2.0
 
 [node name="GUI" type="CenterContainer"]
 pause_mode = 2
@@ -37,15 +37,16 @@ __meta__ = {
 }
 
 [node name="Panel" type="PanelContainer" parent="."]
-margin_left = 136.0
+margin_left = 138.0
 margin_top = 237.0
-margin_right = 463.0
+margin_right = 461.0
 margin_bottom = 787.0
 custom_styles/panel = SubResource( 1 )
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Panel"]
-margin_right = 327.0
+margin_right = 323.0
 margin_bottom = 550.0
+custom_constants/separation = 0
 
 [node name="Left" type="CenterContainer" parent="Panel/HBoxContainer"]
 margin_right = 200.0
@@ -210,7 +211,7 @@ texture_normal = ExtResource( 4 )
 texture_pressed = ExtResource( 6 )
 texture_hover = ExtResource( 9 )
 texture_disabled = ExtResource( 10 )
-texture_focused = ExtResource( 9 )
+texture_focused = ExtResource( 4 )
 
 [node name="Pause" type="TextureButton" parent="Panel/HBoxContainer/Left/VBox"]
 margin_top = 367.0
@@ -288,8 +289,8 @@ texture_disabled = ExtResource( 15 )
 texture_focused = ExtResource( 14 )
 
 [node name="Right" type="MarginContainer" parent="Panel/HBoxContainer"]
-margin_left = 204.0
-margin_right = 327.0
+margin_left = 200.0
+margin_right = 323.0
 margin_bottom = 550.0
 custom_constants/margin_right = 8
 custom_constants/margin_top = 8
